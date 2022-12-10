@@ -23,12 +23,14 @@ void fsm_simple_buttons_run () {
 			if(timer0_flag == 1){
 				if(counter > 0){
 					counter--;
-					//print time();
-					setTimer0(1000);
 				}
+				//print time();
 				time_flag = 1;
+				setTimer0(1000);
 			}
 			if(is_Button1_Pressed()){
+				walk_flag = 0;
+				buzz_flag = 0;
 				setTimer0(10000);
 				setTimer3(1000);
 				mode = 2;
@@ -42,9 +44,15 @@ void fsm_simple_buttons_run () {
 //				mode = 2;
 //			}
 			if(is_Button4_Pressed()){
+				//time for walking
 				setTimer4(1000);
-				setTimer3(10000);
 				buzz_flag = 1;
+				setTimer3(10000);
+				walk_flag = 1;
+			}
+			if(timer3_flag == 1){
+				walk_flag = 0;
+				buzz_flag = 0;
 			}
 		break;
 		case MODE_2:
@@ -155,27 +163,42 @@ void fsm_led1_run(){
 			counter = led_red;
 			mode_led1 = MODE_LED_1;
 		break;
-		case MODE_LED_1:
+		case MODE_LED_1://red
 		HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, SET);
 		HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, RESET);
+		if (walk_flag == 1){
+			//green
+			HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, RESET);
+			HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, SET);
+		}
 		if(timer1_flag == 1){
 			mode_led1 = MODE_LED_2;
 			counter = led_green;
 			setTimer1(led_green*1000);
 		}
 		break;
-		case MODE_LED_2:
+		case MODE_LED_2://green
 			HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, RESET);
 			HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, SET);
+			if (walk_flag == 1){
+				//red
+				HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, SET);
+				HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, RESET);
+			}
 			if(timer1_flag == 1){
 				mode_led1 = MODE_LED_3;
 				counter = led_yellow;
 				setTimer1(led_yellow*1000);
 			}
 		break;
-		case MODE_LED_3:
+		case MODE_LED_3://yellow
 			HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, SET);
 			HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, SET);
+			if (walk_flag == 1){
+				//green
+				HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, RESET);
+				HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, SET);
+			}
 			if(timer1_flag == 1){
 				mode_led1 = MODE_LED_1;
 				counter = led_red;

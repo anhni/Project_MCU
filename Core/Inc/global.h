@@ -35,5 +35,6 @@ extern char buffer[10];
 
 extern int time_flag;
 extern int buzz_flag;
+extern int walk_flag;
 
 #endif /* INC_GLOBAL_H_ */

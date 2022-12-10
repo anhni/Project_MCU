@@ -19,6 +19,7 @@ int led_green = 3;
 int led_yellow = 2;
 int time_flag = 0;
 int buzz_flag = 0;
+int walk_flag = 0;
 
 
 

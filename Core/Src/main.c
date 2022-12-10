@@ -127,6 +127,8 @@ int main(void)
   while (1)
   {
 	 fsm_simple_buttons_run();
+	 print_time();
+	 buzzer();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -163,7 +163,7 @@ void getKeyInput_3(){
 void getKeyInput_4(){
   KeyReg14 = KeyReg13;
   KeyReg13 = KeyReg12;
-  KeyReg12 = HAL_GPIO_ReadPin(A3_GPIO_Port, A3_Pin);
+  KeyReg12 = HAL_GPIO_ReadPin(A0_GPIO_Port, A0_Pin);
   if ((KeyReg13 == KeyReg12) && (KeyReg13 == KeyReg14)){
 	  if (KeyReg14 != KeyReg15){
 		  KeyReg15 = KeyReg14;

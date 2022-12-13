@@ -15,6 +15,8 @@ void fsm_simple_buttons_run () {
 	switch(mode){
 		case MODE_INIT:
 			setTimer0(1000);
+			mode_led1 = MODE_LED_INIT;
+			mode_led2 = MODE_LED_INIT;
 			mode = MODE_1;
 		break;
 		case MODE_1:
@@ -59,6 +61,8 @@ void fsm_simple_buttons_run () {
 			//setting led red time
 			HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, SET);
 			HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, RESET);
+			HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, SET);
+			HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, RESET);
 			//counter
 			if(timer3_flag == 1){
 				time_flag = 1;
@@ -93,6 +97,8 @@ void fsm_simple_buttons_run () {
 			//setting led green time
 			HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, RESET);
 			HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, SET);
+			HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, RESET);
+			HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, SET);
 			//counter
 			if(timer3_flag == 1){
 				time_flag = 1;
@@ -126,6 +132,8 @@ void fsm_simple_buttons_run () {
 			//setting led yellow time
 			HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, SET);
 			HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, SET);
+			HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, SET);
+			HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, SET);
 			//counter
 			if(timer3_flag == 1){
 				time_flag = 1;

@@ -76,9 +76,9 @@ void buzzer(){
 	if(buzz_flag == 1){
 		if(timer3_flag == 0){
 			if(timer4_flag == 1){
-				if(counter < 10){
-				__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 100 - counter*10);
-				setTimer4(counter*100 + 100);
+				if(counter >= 1 && counter < 5){
+				__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 1000 - counter*200);
+				setTimer4(counter*200 + 100);
 				}
 			}
 		}
